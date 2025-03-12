@@ -1,0 +1,9 @@
+REQUESTS_PER_SECOND: 10
+MAX_RETIES: 3
+HOTEL_REVIEWS_PAGE : "https://www.booking.com/reviewlist.en-gb.html"
+OUTPUT_DIR: "output"
+
+# Database configuration
+DB_DSN: "localhost:C:/ProgramData/Firebird/booking_reviews.fdb"
+DB_USER: "SYSDBA"
+DB_PASSWORD: "root123"

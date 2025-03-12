@@ -1,0 +1,66 @@
+﻿https://github.com/cwttaha347/booking.com-reviews-scrapper
+
+
+SET TERM ^ ;
+
+
+CREATE DOMAIN D_CODE
+  AS VARCHAR(5)^
+
+
+CREATE DOMAIN D_CODE_LONG
+  AS VARCHAR(13)^
+
+
+CREATE DOMAIN D_CODE_SHORT
+  AS VARCHAR(1)^
+
+
+CREATE DOMAIN D_DATE
+  AS DATE^
+
+
+CREATE DOMAIN D_LONG_STRING
+  AS VARCHAR(100)^
+
+
+CREATE DOMAIN d_very_long_string
+  AS VARCHAR(1000)^
+
+
+CREATE DOMAIN D_INT
+  AS INTEGER^
+
+
+CREATE DOMAIN D_BLOB
+  AS BLOB( 65535, 1 )^
+
+
+CREATE DOMAIN D_guid
+  AS char( 36 )^
+
+
+
+
+CREATE TABLE A_REW (
+id_rec                 d_guid not null,      /*row identifier*/
+biz_name               d_long_string,        /*hotel name*/
+biz_city               d_long_string,        /*hotel city*/
+biz_country            d_long_string,        /*hotel country*/
+username                      d_long_string,        /*Username of the reviewer on booking.com*/
+user_country                d_long_string,        /*Country of the reviewer*/
+room_view                   D_VERY_LONG_string,   /*Room view or type, of the user e.g. 'Superior Room with Two Double Beds'*/
+stay_duration                d_int,                /*Stay duration of the user in terms of number of nights*/
+stay_type                   d_long_string,        /*Traveller's stay type e.g. Group, Solo traveller, Family...*/
+review_post_date       d_date,               /*Date on which the review was posted*/
+review_title                D_VERY_LONG_string,   /*Review title written by the reviewer*/
+rating                      d_int,                /*Overall rating given by the reviewer, out of 10*/
+original_lang                d_code,               /*Original language of the review/reviewer*/
+review_text_liked             D_VERY_LONG_string,   /*Review section showing the comments of the reviewer about the things he liked*/
+review_text_disliked          D_VERY_LONG_string,   /*Review section showing the comments of the reviewer about the things he disliked*/
+full_review                   d_blob,               /*Field containing combined text of [review_title, review_text_liked, review_text_disliked]*/
+en_full_review                d_blob,               /*English translation of 'full_review', If the user language is en/en-US. otherwise Null*/
+found_helpful                d_int,                /*Number of people that have found the review helpful*/
+found_unhelpful             d_int,                /*Number of people that have found the review unhelpful*/
+owner_resp_text             d_blob,               /*Response of the hotel*/
+hash                   D_CODE_LONG)^          /* hash (to avoid duplicate rows */
